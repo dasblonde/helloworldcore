@@ -8,11 +8,9 @@ namespace HelloWorldCore
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("foo");
-
             var log = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://dockervraposo.cloudapp.net:9200"))
+                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://[dockerhost]:9200"))
                 {
                     AutoRegisterTemplate = true
                 })
