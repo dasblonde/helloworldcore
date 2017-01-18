@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Serilog;
+using Serilog.Sinks.Elasticsearch;
+using System;
 
 namespace HelloWorldCore
 {
@@ -10,6 +9,16 @@ namespace HelloWorldCore
         public static void Main(string[] args)
         {
             Console.WriteLine("foo");
+
+            var log = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://dockervraposo.cloudapp.net:9200"))
+                {
+                    AutoRegisterTemplate = true
+                })
+                .CreateLogger();
+
+            log.Information("hello world from asp.net");
         }
     }
 }
