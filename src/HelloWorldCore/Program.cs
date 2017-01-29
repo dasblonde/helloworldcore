@@ -10,6 +10,7 @@ namespace HelloWorldCore
         {
             var log = new LoggerConfiguration()
                 .MinimumLevel.Information()
+                .WriteTo.Console()
                 .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://[dockerhost]:9200"))
                 {
                     AutoRegisterTemplate = true
